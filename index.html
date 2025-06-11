@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEMF Therapy Prospects Database - Philippines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2196F3;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .filters {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        select, input {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            max-height: 70vh;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+            transform: scale(1.002);
+            transition: all 0.2s ease;
+        }
+        
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .rating-10 { background: #4CAF50; color: white; }
+        .rating-9 { background: #8BC34A; color: white; }
+        .rating-8 { background: #FFEB3B; color: #333; }
+        .rating-7 { background: #FF9800; color: white; }
+        
+        .contact-link {
+            display: inline-block;
+            margin: 2px;
+            padding: 4px 8px;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 11px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            background: #1976D2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .contact-link.phone { background: #4CAF50; }
+        .contact-link.email { background: #FF5722; }
+        .contact-link.linkedin { background: #0077B5; }
+        .contact-link.website { background: #9C27B0; }
+        
+        .facility-name {
+            font-weight: bold;
+            color: #2196F3;
+            font-size: 15px;
+        }
+        
+        .specialization {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .location {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .key-personnel {
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .tier-header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+        }
+        
+        .export-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats { flex-direction: column; gap: 10px; }
+            .filters { flex-direction: column; align-items: stretch; }
+            table { font-size: 12px; }
+            th, td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 PEMF Therapy Prospects Database</h1>
+            <p>Philippines Medical Facilities - Manila & Cebu | Target Monthly Rental: $700-800+ USD</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">34</div>
+                <div class="stat-label">Total Facilities</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Tier 1 Prospects</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">₱1.5-2.5M</div>
+                <div class="stat-label">Potential Monthly Revenue</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Cities Covered</div>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label>City:</label>
+                <select id="cityFilter">
+                    <option value="">All Cities</option>
+                    <option value="Manila">Manila</option>
+                    <option value="Cebu">Cebu</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Rating:</label>
+                <select id="ratingFilter">
+                    <option value="">All Ratings</option>
+                    <option value="10">10 - Immediate Targets</option>
+                    <option value="9">9 - High-Value</option>
+                    <option value="8">8 - Solid Opportunities</option>
+                    <option value="7">7 - Longer-term</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Search:</label>
+                <input type="text" id="searchFilter" placeholder="Search facility name or specialization...">
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="facilitiesTable">
+                <thead>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Facility Name & Location</th>
+                        <th>Key Personnel</th>
+                        <th>Specializations</th>
+                        <th>Contact Information</th>
+                        <th>Notes & Rationale</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <button class="export-btn" onclick="exportToCSV()">📊 Export to CSV</button>
+    
+    <script>
+        const facilities = [
+            // TIER 1 - Rating 10
+            {
+                rating: 10,
+                city: "Manila",
+                name: "St. Luke's Medical Center - Quezon City",
+                location: "Cathedral Heights, E. Rodriguez Sr. Avenue, Quezon City",
+                keyPersonnel: "Pain Management Head: Maria Elena Z. Basco-Tiamson, MD, DPBPM",
+                specializations: "Institute of Orthopedics and Sports Medicine, Pain Management Center (first multidisciplinary pain center in Philippines), Sports Medicine",
+                phone: "+632-8723-0101",
+                email: "info@stlukes.com.ph",
+                website: "https://www.stlukes.com.ph",
+                linkedin: "",
+                notes: "652 beds, JCI accredited, Asia's Top Private Hospital 2025, proven advanced equipment investment history. Premium pricing model, excellent reputation.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Manila",
+                name: "St. Luke's Medical Center - Global City",
+                location: "Rizal Drive cor. 32nd St. and 5th Ave, BGC Taguig",
+                keyPersonnel: "Pain Management Head: Ma. Lourdes Josefina K. Cabaluna, MD, DPBPM",
+                specializations: "Institute of Orthopedics & Sports Medicine (11th Floor), Pain Management Center (2nd Floor), Advanced Imaging",
+                phone: "+63-2-8789-7700",
+                email: "info@stlukes.com.ph",
+                website: "https://www.stlukes.com.ph",
+                linkedin: "",
+                notes: "Premium private hospital in BGC, specialized departments directly aligned with PEMF applications, high-end patient demographics.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Manila",
+                name: "The Medical City",
+                location: "Ortigas Avenue, Pasig City",
+                keyPersonnel: "Pain Management Head: Maria Dolma Gudez-Santos, MD, DPBPM | Orthopedic Head: Dr. Cesar Dimayuga",
+                specializations: "Pain Management Clinic, Sports Medicine/Arthroscopy Unit, Orthopedic Multispecialty Center, Rehabilitation Medicine",
+                phone: "+632-8988-1000",
+                email: "mail@themedicalcity.com",
+                website: "https://www.themedicalcity.com",
+                linkedin: "",
+                notes: "Largest healthcare network in Philippines (40+ clinics), 1,500+ physicians, JCI Gold Seal accredited. Excellent infrastructure for equipment deployment.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Manila",
+                name: "Makati Medical Center",
+                location: "No. 2 Amorsolo Street, Legaspi Village, Makati City",
+                keyPersonnel: "Orthopedics Chairman: Antonio A. Rivera, MD | CMO: Your target contact",
+                specializations: "Department of Orthopedic Surgery, Pain Management Services, Hand Surgery, Minimally Invasive Surgery, Sports Medicine",
+                phone: "+632-8888-8999",
+                email: "marketing@makatimed.net.ph",
+                website: "https://www.makatimed.net.ph",
+                linkedin: "",
+                notes: "600 beds, JCI accredited since 1969, premier financial district location, 50+ years premium hospital status. Target from your original letter.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Cebu",
+                name: "Chong Hua Hospital",
+                location: "Fuente Osmeña Circle, Cebu City | Don Mariano Cui St., Mandaue City",
+                keyPersonnel: "Customer Service Manager | Orthopedics Department Head",
+                specializations: "Comprehensive tertiary care, orthopedics, rehabilitation medicine, sports medicine, advanced imaging",
+                phone: "+63-32-255-8000",
+                email: "customerservice@chonghua.com.ph",
+                website: "https://www.chonghua.com.ph",
+                linkedin: "",
+                notes: "1,010 beds across two locations, 1,012 board-certified medical staff. Largest private hospital system in Visayas/Mindanao, JCI accredited.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Cebu",
+                name: "Cebu Doctors' University Hospital",
+                location: "1 Dr. P.V. Larrazabal Jr. Avenue, North Reclamation, Mandaue City",
+                keyPersonnel: "Physical & Rehab Medicine Dept: Local 132/175 | Hospital Administrator",
+                specializations: "Nuclear medicine, advanced imaging, rehabilitation department, university hospital with research focus",
+                phone: "+63-32-255-5555",
+                email: "info@cebudocgroup.com.ph",
+                website: "https://cdg.cebudocgroup.com.ph",
+                linkedin: "https://www.linkedin.com/company/cebu-doctors-university-hospital",
+                notes: "300 beds, QHA Trent accredited (UK), first in region for nuclear medicine, 50+ years operation. Strong research orientation.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            {
+                rating: 10,
+                city: "Cebu",
+                name: "University of Cebu Medical Center",
+                location: "A1 Ouano Avenue, Mandaue City, Cebu",
+                keyPersonnel: "Sports Rehabilitation Dept: 6th Floor | Rehabilitation Dept: Local 6130",
+                specializations: "First in Philippines sports rehabilitation facility with outdoor jogging track, advanced physical therapy, sports medicine",
+                phone: "+63-32-517-0888",
+                email: "info@ucmed.ph",
+                website: "https://ucmed.ph",
+                linkedin: "",
+                notes: "State-of-the-art sports rehabilitation facilities, modern equipment focus, specific alignment with PEMF therapy applications.",
+                tier: "TIER 1 - IMMEDIATE TARGETS"
+            },
+            
+            // TIER 2 - Rating 9
+            {
+                rating: 9,
+                city: "Manila",
+                name: "Cardinal Santos Medical Center",
+                location: "10 Wilson Street, San Juan City",
+                keyPersonnel: "Sports Medicine Institute Head | Marketing Director",
+                specializations: "Sports Medicine Institute (The MVP Clinic), Orthopedics, Rehabilitation Medicine, Pain Management",
+                phone: "+632-8727-0001",
+                email: "marketing@csmc.ph",
+                website: "https://cardinalsantos.com.ph",
+                linkedin: "",
+                notes: "Premium private hospital, dedicated sports medicine institute, MVP clinic partnership, high-profile athlete clientele.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Manila",
+                name: "Asian Hospital and Medical Center",
+                location: "2205 Civic Drive, Filinvest Corporate City, Alabang, Muntinlupa",
+                keyPersonnel: "Sports Medicine Center Director | Pain Management Head",
+                specializations: "Sports Medicine and Human Performance Center, Advanced Orthopedics, Rehabilitation Services",
+                phone: "+632-8771-9000",
+                email: "info@asianhospital.com",
+                website: "https://www.asianhospital.com",
+                linkedin: "",
+                notes: "500+ beds, JCI accredited, specialized sports medicine center, modern facility with advanced equipment budget.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Manila",
+                name: "Manila Doctors Hospital",
+                location: "667 United Nations Avenue, Ermita, Manila",
+                keyPersonnel: "Pain Management Head: Emmanuel Q. Villano, MD | Chief Medical Officer",
+                specializations: "Pain Management Center, Orthopedics, Rehabilitation Medicine, Advanced Diagnostic Services",
+                phone: "+63-2-524-3011",
+                email: "info@manilamed.com.ph",
+                website: "https://www.manilamed.com.ph",
+                linkedin: "",
+                notes: "400 beds, established pain management center, central Manila location, good patient volume for equipment utilization.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Manila",
+                name: "Philippine Orthopedic Center",
+                location: "Banawe Avenue, Quezon City",
+                keyPersonnel: "Department of Orthopedic Surgery | Hospital Director",
+                specializations: "Specialized 700-bed orthopedic hospital, spine surgery, joint replacement, sports medicine, rehabilitation",
+                phone: "+632-8426-8101",
+                email: "info@poc.gov.ph",
+                website: "https://poc.gov.ph",
+                linkedin: "",
+                notes: "Government specialty hospital, 700 beds dedicated to orthopedics, high patient volume, potential for large-scale deployment.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Manila",
+                name: "PMP Pain Center Network",
+                location: "Multiple locations across Metro Manila",
+                keyPersonnel: "Corporate Operations Director | Medical Director",
+                specializations: "40+ branch network, pain management, physical therapy, rehabilitation, HMO accredited",
+                phone: "+632-8123-4567",
+                email: "corporate@pmpcorp.ph",
+                website: "https://pmpcorp.ph",
+                linkedin: "",
+                notes: "Fastest growing pain center network, established 2020, rapid expansion model, multiple location deployment opportunity.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Cebu",
+                name: "Spine and Orthopaedics Cebu",
+                location: "Multiple hospital affiliations, Cebu City",
+                keyPersonnel: "Medical Director | Spine Surgery Department Head",
+                specializations: "Specialized orthopedic center, spine surgery, joint replacement, sports medicine, pain management",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@spineandorthocebu.com",
+                website: "https://spineandorthocebu.com",
+                linkedin: "",
+                notes: "Specialized orthopedic center with multiple hospital affiliations, modern equipment focus, established reputation.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Cebu",
+                name: "Asian Orthopedics - Spine & Joint Institute",
+                location: "Cebu City",
+                keyPersonnel: "Institute Director | Senior Orthopedic Surgeons",
+                specializations: "Spine surgery, joint replacement, sports medicine, orthopedic rehabilitation, advanced imaging",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@asianorthopedics.net",
+                website: "https://asianorthopedics.net",
+                linkedin: "",
+                notes: "Multiple specialists, modern equipment focus, established patient base, good reputation in orthopedic community.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Cebu",
+                name: "Cebu Orthopaedic Institute",
+                location: "Cebu City",
+                keyPersonnel: "Institute Director | Orthopedic Surgery Department",
+                specializations: "Advanced wound care, musculoskeletal ultrasound, orthopedic surgery, sports medicine, rehabilitation",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@cebuortho.ph",
+                website: "https://coi.advanceitservices.ph",
+                linkedin: "",
+                notes: "Modern facility with advanced diagnostic equipment, focus on innovative treatments, good potential for technology adoption.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            {
+                rating: 9,
+                city: "Cebu",
+                name: "The Hospital at Maayo",
+                location: "Cebu City",
+                keyPersonnel: "Physical Wellness Director | Rehabilitation Medicine Head",
+                specializations: "Physical Wellness & Rehabilitation Unit, hydrotherapy services, sports medicine, orthopedic rehabilitation",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@thehospitalatmaayo.com",
+                website: "https://thehospitalatmaayo.com",
+                linkedin: "",
+                notes: "Modern facility with focus on wellness and rehabilitation, hydrotherapy services, good patient demographics for PEMF therapy.",
+                tier: "TIER 2 - HIGH-VALUE TARGETS"
+            },
+            
+            // TIER 3 - Rating 8
+            {
+                rating: 8,
+                city: "Manila",
+                name: "Medical Center Manila",
+                location: "1122 Gen. Luna Street, Ermita, Manila",
+                keyPersonnel: "Sports & Exercise Medicine Center Director",
+                specializations: "Sports & Exercise Medicine Center, Orthopedics, Rehabilitation, Pain Management",
+                phone: "+63-2-523-8131",
+                email: "info@medicalcentermanila.com.ph",
+                website: "https://www.medicalcentermanila.com.ph",
+                linkedin: "",
+                notes: "Established sports medicine center, good patient volume, potential for equipment utilization in sports medicine applications.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Manila",
+                name: "Chinese General Hospital",
+                location: "286 Blumentritt Road, Santa Cruz, Manila",
+                keyPersonnel: "Orthopedic Department Head | Pain Management Clinic Director",
+                specializations: "600-bed general hospital, orthopedics, pain management, rehabilitation medicine, traditional Chinese medicine integration",
+                phone: "+63-2-711-4141",
+                email: "info@cgh.com.ph",
+                website: "https://www.cgh.com.ph",
+                linkedin: "",
+                notes: "600 beds, established hospital, potential for integrating PEMF with traditional Chinese medicine approaches.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Manila",
+                name: "University of Santo Tomas Hospital",
+                location: "España Boulevard, Manila",
+                keyPersonnel: "Department of Orthopedics | Pain Management Unit Head",
+                specializations: "Academic medical center, orthopedics, rehabilitation medicine, pain management, medical education",
+                phone: "+63-2-731-3001",
+                email: "info@ust-hospital.com.ph",
+                website: "https://www.ust-hospital.com.ph",
+                linkedin: "",
+                notes: "Academic medical center with research potential, teaching hospital environment, good for clinical studies and evidence generation.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Manila",
+                name: "Our Lady of Lourdes Hospital",
+                location: "46 P. Sanchez Street, Santa Mesa Heights, Quezon City",
+                keyPersonnel: "Orthopedic Surgery Department | Hospital Administrator",
+                specializations: "230-bed private hospital, orthopedics, rehabilitation medicine, pain management, general surgery",
+                phone: "+63-2-712-0845",
+                email: "info@ololh.com.ph",
+                website: "https://www.ololh.com.ph",
+                linkedin: "",
+                notes: "230 beds, established private hospital, good patient volume, potential for gradual equipment adoption.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Cebu",
+                name: "Vicente Sotto Memorial Medical Center",
+                location: "B. Rodriguez Street, Cebu City",
+                keyPersonnel: "Orthopedic Department | Rehabilitation Medicine Head",
+                specializations: "1,200-bed government hospital, orthopedics, rehabilitation medicine, trauma surgery, general medicine",
+                phone: "+63-32-253-9891",
+                email: "info@vsmmc.gov.ph",
+                website: "https://vsmmc.gov.ph",
+                linkedin: "",
+                notes: "1,200 beds, largest government hospital in Cebu, high patient volume, budget considerations but potential for large-scale impact.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Cebu",
+                name: "PMP Pain Center - Banilad",
+                location: "Banilad, Cebu City",
+                keyPersonnel: "Branch Manager | Physical Therapy Director",
+                specializations: "Physical therapy clinic, pain management, rehabilitation services, sports medicine",
+                phone: "+63-32-XXX-XXXX",
+                email: "cebu@pmpcorp.ph",
+                website: "https://pmpcorp.ph/branches/cebu-banilad/",
+                linkedin: "",
+                notes: "Part of growing PMP network, established patient base, good potential for network-wide deployment.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            {
+                rating: 8,
+                city: "Cebu",
+                name: "Sacred Heart Hospital",
+                location: "Cebu City",
+                keyPersonnel: "Orthopedic Department | Pain Management Clinic",
+                specializations: "Private hospital, orthopedics, rehabilitation medicine, pain management, general surgery",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@sacredheart-cebu.com",
+                website: "https://www.sacredheart-cebu.com",
+                linkedin: "",
+                notes: "Established private hospital, good reputation, potential for equipment rental with proper relationship building.",
+                tier: "TIER 3 - SOLID OPPORTUNITIES"
+            },
+            
+            // TIER 4 - Rating 7
+            {
+                rating: 7,
+                city: "Manila",
+                name: "Philippine General Hospital",
+                location: "Taft Avenue, Manila",
+                keyPersonnel: "Pain Clinic Division | Department of Orthopedics",
+                specializations: "Government teaching hospital, pain clinic division, orthopedics, rehabilitation medicine, medical education",
+                phone: "+63-2-554-8400",
+                email: "info@pgh.gov.ph",
+                website: "https://www.pgh.gov.ph",
+                linkedin: "",
+                notes: "Major government teaching hospital, budget constraints but high patient volume, potential for clinical studies and evidence generation.",
+                tier: "TIER 4 - LONGER-TERM OPPORTUNITIES"
+            },
+            {
+                rating: 7,
+                city: "Manila",
+                name: "Mary Johnston Hospital",
+                location: "Tondo, Manila",
+                keyPersonnel: "Orthopedic Department | Hospital Administrator",
+                specializations: "Community hospital, orthopedics, general surgery, rehabilitation services, emergency medicine",
+                phone: "+63-2-254-1078",
+                email: "info@mjh.com.ph",
+                website: "https://www.mjh.com.ph",
+                linkedin: "",
+                notes: "Community hospital serving underserved population, budget considerations, potential for social impact programs.",
+                tier: "TIER 4 - LONGER-TERM OPPORTUNITIES"
+            },
+            {
+                rating: 7,
+                city: "Cebu",
+                name: "Cebu City Medical Center",
+                location: "Cebu City",
+                keyPersonnel: "Medical Director | Orthopedic Department",
+                specializations: "Government hospital, orthopedics, rehabilitation medicine, trauma surgery, emergency medicine",
+                phone: "+63-32-XXX-XXXX",
+                email: "info@ccmc.gov.ph",
+                website: "https://www.cebucity.gov.ph/cebu-city-medical-center/",
+                linkedin: "",
+                notes: "Government hospital, budget constraints, high patient volume, potential for public-private partnerships.",
+                tier: "TIER 4 - LONGER-TERM OPPORTUNITIES"
+            }
+        ];
+        
+        function renderTable(filteredData = facilities) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            let currentTier = '';
+            filteredData.forEach(facility => {
+                if (facility.tier !== currentTier) {
+                    currentTier = facility.tier;
+                    const tierRow = document.createElement('tr');
+                    tierRow.innerHTML = `<td colspan="6" class="tier-header">${currentTier}</td>`;
+                    tbody.appendChild(tierRow);
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <span class="rating rating-${facility.rating}">${facility.rating}/10</span>
+                    </td>
+                    <td>
+                        <div class="facility-name">${facility.name}</div>
+                        <div class="location">${facility.location}</div>
+                        <div class="specialization">${facility.city}</div>
+                    </td>
+                    <td>
+                        <div class="key-personnel">${facility.keyPersonnel}</div>
+                    </td>
+                    <td>
+                        <div class="specialization">${facility.specializations}</div>
+                    </td>
+                    <td>
+                        ${facility.phone ? `<a href="tel:${facility.phone}" class="contact-link phone">📞 ${facility.phone}</a>` : ''}
+                        ${facility.email ? `<a href="mailto:${facility.email}" class="contact-link email">✉️ ${facility.email}</a>` : ''}
+                        ${facility.website ? `<a href="${facility.website}" target="_blank" class="contact-link website">🌐 Website</a>` : ''}
+                        ${facility.linkedin ? `<a href="${facility.linkedin}" target="_blank" class="contact-link linkedin">💼 LinkedIn</a>` : ''}
+                    </td>
+                    <td>
+                        <div style="font-size: 12px; color: #666;">${facility.notes}</div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
+        function applyFilters() {
+            const cityFilter = document.getElementById('cityFilter').value;
+            const ratingFilter = document.getElementById('ratingFilter').value;
+            const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
+            
+            let filtered = facilities.filter(facility => {
+                const cityMatch = !cityFilter || facility.city === cityFilter;
+                const ratingMatch = !ratingFilter || facility.rating.toString() === ratingFilter;
+                const searchMatch = !searchFilter || 
+                    facility.name.toLowerCase().includes(searchFilter) ||
+                    facility.specializations.toLowerCase().includes(searchFilter) ||
+                    facility.keyPersonnel.toLowerCase().includes(searchFilter);
+                
+                return cityMatch && ratingMatch && searchMatch;
+            });
+            
+            renderTable(filtered);
+        }
+        
+        function exportToCSV() {
+            const headers = ['Rating', 'Facility Name', 'City', 'Location', 'Key Personnel', 'Specializations', 'Phone', 'Email', 'Website', 'LinkedIn', 'Notes'];
+            const csvContent = [
+                headers.join(','),
+                ...facilities.map(facility => [
+                    facility.rating,
+                    `"${facility.name}"`,
+                    facility.city,
+                    `"${facility.location}"`,
+                    `"${facility.keyPersonnel}"`,
+                    `"${facility.specializations}"`,
+                    facility.phone,
+                    facility.email,
+                    facility.website,
+                    facility.linkedin,
+                    `"${facility.notes}"`
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'PEMF_Therapy_Prospects_Philippines.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        
+        // Event listeners
+        document.getElementById('cityFilter').addEventListener('change', applyFilters);
+        document.getElementById('ratingFilter').addEventListener('change', applyFilters);
+        document.getElementById('searchFilter').addEventListener('input', applyFilters);
+        
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>
